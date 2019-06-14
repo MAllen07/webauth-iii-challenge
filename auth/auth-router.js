@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const db = require('../users/users-model.js');
 const secrets = require('./secrets.js');
 
-// Register User. Post- password hashed
+//POST: Register user - password hashed
 router.post('/register', (req, res) => {
     const user = req.body;
     const hash = bcrypt.hashSync(user.password, 12); //hash password
@@ -26,7 +26,7 @@ router.post('/register', (req, res) => {
     }
 });
 
-// Login User. Post. -returning a token
+// POST: Login user -returning a token
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
@@ -49,7 +49,7 @@ router.post('/login', (req, res) => {
 });
 
 
-// Generate Token
+// How to Generate Token
 function generateToken(user) {
     const payload = {
         subject: user.id,
